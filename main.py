@@ -1,38 +1,62 @@
-# import customtkinter
-# from tkinter import *
-# from tkinter import ttk
-# import tkinter as tk
-# from tkinter import messagebox
-# from matplotlib.figure import Figure
-# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-# import database
-
-# app = customtkinter.CTk()
-# app.title('INVENTORY MANAGEMENT SYSTEM')
-# app.geometry('800x680')
-# app.config(bg='#0A0D0C')
-# app.resizable(TRUE,TRUE)
-
-# font1 = ('Arial',25,'bold')
-
-# app.mainloop()
-
-import tkinter as Tk
-from tkinter import *
+# Program to make a simple 
+# login screen 
 
 
-master=Tk()
+import tkinter as tk
 
-master.title('INVENTORY MANAGEMENT SYSTEM')
-master.geometry('1080x680')
-master.config(bg='#0A0D0C')
+root=tk.Tk()
 
-# master.Label(text="Enter Name").pack()
-# master.Entry().pack()
+# setting the windows size
+root.geometry("600x400")
+
+# declaring string variable
+# for storing name and password
+name_var=tk.StringVar()
+passw_var=tk.StringVar()
 
 
-b1=Button(master,text = "SUBMIT")
-b1.place(relx = 0.5, rely = 0.5, anchor = CENTER)
+# defining a function that will
+# get the name and password and 
+# print them on the screen
+def submit():
 
+	name=name_var.get()
+	password=passw_var.get()
+	
+	print("The name is : " + name)
+	print("The password is : " + password)
+	
+	name_var.set("")
+	passw_var.set("")
+	
+	
+# creating a label for 
+# name using widget Label
+name_label = tk.Label(root, text = 'Username', font=('calibre',10, 'bold'))
 
-master.mainloop()
+# creating a entry for input
+# name using widget Entry
+name_entry = tk.Entry(root,textvariable = name_var, font=('calibre',10,'normal'))
+
+# creating a label for password
+passw_label = tk.Label(root, text = 'Password', font = ('calibre',10,'bold'))
+
+# creating a entry for password
+passw_entry=tk.Entry(root, textvariable = passw_var, font = ('calibre',10,'normal'), show = '*')
+
+# creating a button using the widget 
+# Button that will call the submit function 
+sub_btn=tk.Button(root,text = 'Submit', command = submit)
+
+# placing the label and entry in
+# the required position using grid
+# method
+name_label.grid(row=0,column=0)
+name_entry.grid(row=0,column=1)
+passw_label.grid(row=1,column=0)
+passw_entry.grid(row=1,column=1)
+sub_btn.grid(row=2,column=1)
+
+# performing an infinite loop 
+# for the window to display
+root.mainloop()
