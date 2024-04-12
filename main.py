@@ -1,62 +1,91 @@
-# Program to make a simple 
-# login screen 
-
-
 import tkinter as tk
 
 root=tk.Tk()
 
-# setting the windows size
-root.geometry("600x400")
+root.geometry("1000x600")
+root.title('DBMS_PROJECT')
 
-# declaring string variable
-# for storing name and password
-name_var=tk.StringVar()
-passw_var=tk.StringVar()
+def table1_page():
+    table1_frame = tk.Frame(main_frame)
+    
+    lb =tk.Label(table1_frame , text='table 1 page \n \n page:1',font=("Bold",30))
+    lb.pack()
+    
+    table1_frame.pack(pady=20)
 
 
-# defining a function that will
-# get the name and password and 
-# print them on the screen
-def submit():
+def table2_page():
+    table2_frame = tk.Frame(main_frame)
+    
+    lb =tk.Label(table2_frame , text='table 2 page \n \n page:1',font=("Bold",30))
+    lb.pack()
+    
+    table2_frame.pack(pady=20)
+    
+    
+def table3_page():
+    table3_frame = tk.Frame(main_frame)
+    
+    lb =tk.Label(table3_frame , text='table 3 page \n \n page:1',font=("Bold",30))
+    lb.pack()
+    
+    table3_frame.pack(pady=20)
 
-	name=name_var.get()
-	password=passw_var.get()
-	
-	print("The name is : " + name)
-	print("The password is : " + password)
-	
-	name_var.set("")
-	passw_var.set("")
-	
-	
-# creating a label for 
-# name using widget Label
-name_label = tk.Label(root, text = 'Username', font=('calibre',10, 'bold'))
 
-# creating a entry for input
-# name using widget Entry
-name_entry = tk.Entry(root,textvariable = name_var, font=('calibre',10,'normal'))
+def hide_indicators():
+    table1_indicate.config(bg="#c3c3c3")
+    table2_indicate.config(bg="#c3c3c3")
+    table3_indicate.config(bg="#c3c3c3")
+    
 
-# creating a label for password
-passw_label = tk.Label(root, text = 'Password', font = ('calibre',10,'bold'))
+#for deleteing previos page data bfor enew load  
+def delete_pages():
+    for frame in main_frame.winfo_children():
+        frame.destroy()
+    
+    
+def indicate(lb, page):
+    hide_indicators()   #hiding indicaot before new touch
+    lb.config(bg='#158aff')
+    delete_pages()
+    page()
 
-# creating a entry for password
-passw_entry=tk.Entry(root, textvariable = passw_var, font = ('calibre',10,'normal'), show = '*')
 
-# creating a button using the widget 
-# Button that will call the submit function 
-sub_btn=tk.Button(root,text = 'Submit', command = submit)
+#----------------------------------------option _frame _work _here-----------------------------------------
+options_frame = tk.Frame(root,bg="#c3c3c3")#option vala frame 
 
-# placing the label and entry in
-# the required position using grid
-# method
-name_label.grid(row=0,column=0)
-name_entry.grid(row=0,column=1)
-passw_label.grid(row=1,column=0)
-passw_entry.grid(row=1,column=1)
-sub_btn.grid(row=2,column=1)
+table1_btn = tk.Button(options_frame,text="TABLE_1",font=('Bold',15),fg='#158aff',bd=0
+                       ,bg='#c3c3c3',command=lambda: indicate(table1_indicate , table1_page) )
+table1_btn.place(x=10,y=50)# next button 50 then 100 for buttondistance
 
-# performing an infinite loop 
-# for the window to display
+table1_indicate = tk.Label(options_frame, text = '' , bg='#c3c3c3')
+table1_indicate.place(x=3 , y=50 , width=5 , height=40) 
+
+table2_btn = tk.Button(options_frame,text="TABLE_2",font=('Bold',15),fg='#158aff',bd=0
+                       ,bg='#c3c3c3',command=lambda: indicate(table2_indicate , table2_page) )
+table2_btn.place(x=10,y=100)
+
+table2_indicate = tk.Label(options_frame, text = '' , bg='#c3c3c3')
+table2_indicate.place(x=3 , y=100 , width=5 , height=40) 
+
+table3_btn = tk.Button(options_frame,text="TABLE_3",font=('Bold',15),fg='#158aff',bd=0
+                       ,bg='#c3c3c3',command=lambda: indicate(table3_indicate , table1_page) )
+table3_btn.place(x=10,y=150)
+
+table3_indicate = tk.Label(options_frame, text = '' , bg='#c3c3c3')
+table3_indicate.place(x=3 , y=150 , width=5 , height=40) 
+
+options_frame.pack(side=tk.LEFT)
+options_frame.pack_propagate(False)
+options_frame.configure(width=150,height=600)
+
+#-------------------------------------main_frame_work_here------------------------------------------------
+
+main_frame = tk.Frame(root,highlightbackground="black",highlightthickness=2)
+
+main_frame.pack(side=tk.LEFT)
+main_frame.pack_propagate(False)
+main_frame.configure(width=850,height=600)
+
+
 root.mainloop()
