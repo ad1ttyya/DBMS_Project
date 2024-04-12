@@ -1,62 +1,44 @@
-# Program to make a simple 
-# login screen 
-
-
 import tkinter as tk
+from tkinter import messagebox
 
-root=tk.Tk()
-
-# setting the windows size
-root.geometry("600x400")
-
-# declaring string variable
-# for storing name and password
-name_var=tk.StringVar()
-passw_var=tk.StringVar()
+from backend import *
+curr = mydb.cursor()
+curr.execute("use company_1;")
+curr.execute("select * from USER_LOGIN_DATA")
 
 
-# defining a function that will
-# get the name and password and 
-# print them on the screen
-def submit():
+def login():
+    username = username_entry.get()
+    password = password_entry.get()
+    # Check if username and password are correct
+    for i in curr:
+        print(i[1],i[2])
+        if username == i[1] and password == i[2]:
+            messagebox.showinfo("Login Successful", "Welcome, Admin!")
+                # messagebox.showinfo("Login Successful", "Welcome, Admin!")
+    messagebox.showerror("Login Failed", "Invalid username or password")
+			
 
-	name=name_var.get()
-	password=passw_var.get()
-	
-	print("The name is : " + name)
-	print("The password is : " + password)
-	
-	name_var.set("")
-	passw_var.set("")
-	
-	
-# creating a label for 
-# name using widget Label
-name_label = tk.Label(root, text = 'Username', font=('calibre',10, 'bold'))
+# Create main window
+root = tk.Tk()
+root.title("Login Page")
 
-# creating a entry for input
-# name using widget Entry
-name_entry = tk.Entry(root,textvariable = name_var, font=('calibre',10,'normal'))
+# Create labels
+username_label = tk.Label(root, text="Username:")
+username_label.grid(row=0, column=0, padx=10, pady=5, sticky="e")
 
-# creating a label for password
-passw_label = tk.Label(root, text = 'Password', font = ('calibre',10,'bold'))
+password_label = tk.Label(root, text="Password:")
+password_label.grid(row=1, column=0, padx=10, pady=5, sticky="e")
 
-# creating a entry for password
-passw_entry=tk.Entry(root, textvariable = passw_var, font = ('calibre',10,'normal'), show = '*')
+# Create entry widgets
+username_entry = tk.Entry(root)
+username_entry.grid(row=0, column=1, padx=10, pady=5)
 
-# creating a button using the widget 
-# Button that will call the submit function 
-sub_btn=tk.Button(root,text = 'Submit', command = submit)
+password_entry = tk.Entry(root, show="*")
+password_entry.grid(row=1, column=1, padx=10, pady=5)
 
-# placing the label and entry in
-# the required position using grid
-# method
-name_label.grid(row=0,column=0)
-name_entry.grid(row=0,column=1)
-passw_label.grid(row=1,column=0)
-passw_entry.grid(row=1,column=1)
-sub_btn.grid(row=2,column=1)
+# Create login button
+login_button = tk.Button(root, text="Login", command=login)
+login_button.grid(row=2, columnspan=2, padx=10, pady=10)
 
-# performing an infinite loop 
-# for the window to display
 root.mainloop()
