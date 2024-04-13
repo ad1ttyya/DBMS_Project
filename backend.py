@@ -54,11 +54,16 @@ def table5(name):#delete_item
 
 def table6(price,name,quantity,status,namedelete):#edit_item
   mycursor.execute("use COMP_DATABASE")
-  sql = "UPDATE INVENTORY_ALL_ITEMS SET ITEM_PRICE= %s ,ITEM_NAME= %s ,QUANTITY= %s ,STATUS= %s WHERE address= %s "
+  sql = "UPDATE INVENTORY_ALL_ITEMS SET ITEM_PRICE= %s ,ITEM_NAME= %s ,QUANTITY= %s ,STATUS= %s WHERE ITEM_NAME= %s "
   values = (price,name,quantity,status,namedelete)
   mycursor.execute(sql, values)
   mydb.commit()
+  
+#table6(400,"TAPE",69,"IN","TAPE")
 
 
-
-table6(400,"TAPE",69,"OUT","TAPE")
+# CREATE TABLE OUT_STOCK
+# AS SELECT
+#   *
+# FROM INVENTORY_ALL_ITEMS
+# WHERE STATUS = 'out';
