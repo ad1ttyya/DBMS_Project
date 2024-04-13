@@ -1,50 +1,57 @@
-import tkinter as tk
 from tkinter import *
-from tkinter import messagebox
+import tkinter as tk
 from backend import *
+from tkinter import messagebox
+
 #-------------------------------------------------------------------------
 
 
 def window_main():
     root=tk.Tk()
     root.geometry("1000x600")
-    root.title('DBMS_PROJECT')
+    root.title('DBMS_PROJECT') 
     
     
-    def table1_page():
+    def table1_page():  
         table1_frame = tk.Frame(main_frame)
-        data = table1()
+        #lb =tk.Label(table1_frame , text='table 1 page \n \n page:1',font=("Bold",30))
+        #lb.pack()  
+        data = top_table()+table1()
         total_rows = len(data)
         total_columns = len(data[0])
         for i in range(total_rows):
             for j in range(total_columns):
-                e = Entry(table1_frame, width=20, fg='blue', font=('Arial',16,'bold'))
+                e = Entry(table1_frame, width=20, fg='black', font=('Arial',12,'bold'))
                 e.grid(row=i, column=j)
                 e.insert(END, data[i][j])
-        table1_frame.pack(pady=20)
-        
+        table1_frame.pack(pady=20)     
+ 
  
     def table2_page():
         table2_frame = tk.Frame(main_frame)
-        data = table2()
+        #lb =tk.Label(table2_frame , text='table 2 page \n \n page:2',font=("Bold",30))
+        #lb.pack()
+        data = top_table()+table2()
         total_rows = len(data)
         total_columns = len(data[0])
         for i in range(total_rows):
             for j in range(total_columns):
-                e = Entry(table2_frame, width=20, fg='blue', font=('Arial',16,'bold'))
+                e = Entry(table2_frame, width=20, fg='black', font=('Arial',12,'bold'))
                 e.grid(row=i, column=j)
                 e.insert(END, data[i][j])
         table2_frame.pack(pady=20) 
- 
+
  
     def table3_page():
         table3_frame = tk.Frame(main_frame)
-        data = table3()
+        #lb =tk.Label(table3_frame , text='table 3 page \n \n page:3',font=("Bold",30))
+        #lb.pack()
+        data = top_table()+table3()
         total_rows = len(data)
         total_columns = len(data[0])
         for i in range(total_rows):
             for j in range(total_columns):
-                e = Entry(table3_frame, width=20, fg='blue', font=('Arial',16,'bold'))
+                e = Entry(table3_frame, width=20, fg='black', font=('Arial',12,'bold'))
                 e.grid(row=i, column=j)
                 e.insert(END, data[i][j])
         table3_frame.pack(pady=20) 
@@ -52,22 +59,115 @@ def window_main():
         
     def table4_page():
         table4_frame = tk.Frame(main_frame)
-        lb =tk.Label(table4_frame , text='table 4 page \n \n page:4',font=("Bold",30))
-        lb.pack()
+  
+        # lb =tk.Label(table4_frame , text='table 4 page \n \n page:4',font=("Bold",30))
+        # lb.pack()
+        
+        def details():
+            price = price_entry.get()
+            name = name_entry.get()
+            quantity = quantity_entry.get()
+            status = status_entry.get() 
+            table4(price,name,quantity,status)
+            
+        # Create label and entry
+        price_label = tk.Label(table4_frame, text="price:")
+        price_label.pack()
+        price_entry = tk.Entry(table4_frame)
+        price_entry.pack()
+        
+        # Create label and entry
+        name_label = tk.Label(table4_frame, text="name:")
+        name_label.pack()
+        name_entry = tk.Entry(table4_frame)
+        name_entry.pack()
+        
+        # Create label and entry
+        quantity_label = tk.Label(table4_frame, text="quantity:")
+        quantity_label.pack()
+        quantity_entry = tk.Entry(table4_frame)
+        quantity_entry.pack()
+        
+        # Create label and entry
+        status_label = tk.Label(table4_frame, text="status:")
+        status_label.pack()
+        status_entry = tk.Entry(table4_frame)
+        status_entry.pack()    
+        
+        add_button = tk.Button(table4_frame, text="ADD", command=details)
+        add_button.pack()
+
         table4_frame.pack(pady=20) 
         
     
     def table5_page():
         table5_frame = tk.Frame(main_frame)
-        lb =tk.Label(table5_frame , text='table 5 page \n \n page:5',font=("Bold",30))
-        lb.pack()
+        # lb =tk.Label(table5_frame , text='table 5 page \n \n page:5',font=("Bold",30))
+        # lb.pack()
+
+        def details():
+            name = name_entry.get()
+            table5(name)
+            
+        # Create label and entry
+        name_label = tk.Label(table5_frame, text="name:")
+        name_label.pack()
+        name_entry = tk.Entry(table5_frame)
+        name_entry.pack()  
+        
+        add_button = tk.Button(table5_frame, text="DELETE", command=details)
+        add_button.pack()
+        
         table5_frame.pack(pady=20) 
         
         
     def table6_page():
         table6_frame = tk.Frame(main_frame)
-        lb =tk.Label(table6_frame , text='table 6 page \n \n page:6',font=("Bold",30))
-        lb.pack()
+        # lb =tk.Label(table6_frame , text='table 6 page \n \n page:6',font=("Bold",30))
+        # lb.pack()
+        
+        
+        def details():
+            price = price_entry.get()
+            name = name_entry.get()
+            quantity = quantity_entry.get()
+            status = status_entry.get() 
+            namedelete = namedelete_entry.get()
+            table6(price,name,quantity,status,namedelete)
+            
+        # Create label and entry
+        price_label = tk.Label(table6_frame, text="price:")
+        price_label.pack()
+        price_entry = tk.Entry(table6_frame)
+        price_entry.pack()
+        
+        # Create label and entry
+        name_label = tk.Label(table6_frame, text="name:")
+        name_label.pack()
+        name_entry = tk.Entry(table6_frame)
+        name_entry.pack()
+        
+        # Create label and entry
+        quantity_label = tk.Label(table6_frame, text="quantity:")
+        quantity_label.pack()
+        quantity_entry = tk.Entry(table6_frame)
+        quantity_entry.pack()
+        
+        # Create label and entry
+        status_label = tk.Label(table6_frame, text="status:")
+        status_label.pack()
+        status_entry = tk.Entry(table6_frame)
+        status_entry.pack() 
+        
+        # Create label and entry
+        namedelete_label = tk.Label(table6_frame, text="OLD NAME:")
+        namedelete_label.pack()
+        namedelete_entry = tk.Entry(table6_frame)
+        namedelete_entry.pack()    
+        
+        add_button = tk.Button(table6_frame, text="UPDATE", command=details)
+        add_button.pack()
+
         table6_frame.pack(pady=20)
     
         
@@ -164,16 +264,19 @@ def window_login():
         password = password_entry.get()
 
         # Check if username and password are correct
-        if username == "a" and password == "a":
+        if (username == "aditya" and password == "gaur")or(username == "anshoomaan" and password == "divy"):
             messagebox.showinfo("Login Successful", "Welcome, Admin!" )
             
+            root.destroy()
             window_main() 
             #code to close previous window will come here
             
             # You can add code here to open a new window or perform any action after successful login
         else:
             messagebox.showerror("Login Failed", "Incorrect username or password")
+            root.destroy()
 
+        
     # Create the main window
     root = tk.Tk()
     root.title("Login Page")
@@ -201,6 +304,4 @@ def window_login():
 
 #-------------------------------------------------------------------------
 
-window_main()
-# window_login()
-
+window_login()
