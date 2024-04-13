@@ -17,22 +17,19 @@ def table1():#itemlist
   mycursor.execute("use COMP_DATABASE")
   mycursor.execute("SELECT * FROM INVENTORY_ALL_ITEMS")
   myresult = mycursor.fetchall()
-  for x in myresult:
-    print(x) 
+  return myresult
   
 def table2():#in_stock
   mycursor.execute("use COMP_DATABASE")
   mycursor.execute( "SELECT * FROM INVENTORY_ALL_ITEMS WHERE STATUS='IN' " )
   myresult = mycursor.fetchall()
-  for x in myresult:
-    print(x)
+  return myresult
   
 def table3():#out_stock
   mycursor.execute("use COMP_DATABASE")
   mycursor.execute( "SELECT * FROM INVENTORY_ALL_ITEMS WHERE STATUS='OUT' " )
   myresult = mycursor.fetchall()
-  for x in myresult:
-    print(x)
+  return myresult
 
 def table4(price,name,quantity,status):#add_item
   mycursor.execute("use COMP_DATABASE")

@@ -1,6 +1,7 @@
 import tkinter as tk
+from tkinter import *
 from tkinter import messagebox
-
+from backend import *
 #-------------------------------------------------------------------------
 
 
@@ -12,22 +13,40 @@ def window_main():
     
     def table1_page():
         table1_frame = tk.Frame(main_frame)
-        lb =tk.Label(table1_frame , text='table 1 page \n \n page:1',font=("Bold",30))
-        lb.pack()
+        data = table1()
+        total_rows = len(data)
+        total_columns = len(data[0])
+        for i in range(total_rows):
+            for j in range(total_columns):
+                e = Entry(table1_frame, width=20, fg='blue', font=('Arial',16,'bold'))
+                e.grid(row=i, column=j)
+                e.insert(END, data[i][j])
         table1_frame.pack(pady=20)
         
  
     def table2_page():
         table2_frame = tk.Frame(main_frame)
-        lb =tk.Label(table2_frame , text='table 2 page \n \n page:2',font=("Bold",30))
-        lb.pack()
+        data = table2()
+        total_rows = len(data)
+        total_columns = len(data[0])
+        for i in range(total_rows):
+            for j in range(total_columns):
+                e = Entry(table2_frame, width=20, fg='blue', font=('Arial',16,'bold'))
+                e.grid(row=i, column=j)
+                e.insert(END, data[i][j])
         table2_frame.pack(pady=20) 
  
  
     def table3_page():
         table3_frame = tk.Frame(main_frame)
-        lb =tk.Label(table3_frame , text='table 3 page \n \n page:3',font=("Bold",30))
-        lb.pack()
+        data = table3()
+        total_rows = len(data)
+        total_columns = len(data[0])
+        for i in range(total_rows):
+            for j in range(total_columns):
+                e = Entry(table3_frame, width=20, fg='blue', font=('Arial',16,'bold'))
+                e.grid(row=i, column=j)
+                e.insert(END, data[i][j])
         table3_frame.pack(pady=20) 
         
         
@@ -182,6 +201,6 @@ def window_login():
 
 #-------------------------------------------------------------------------
 
-#window_main()
-window_login()
+window_main()
+# window_login()
 
