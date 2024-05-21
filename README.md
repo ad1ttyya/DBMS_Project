@@ -30,7 +30,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-[![Product Name Screen Shot]](https://github.com/ad1ttyya/DBMS_Project/blob/main/demo.png)
+[![Product Name Screen Shot](https://github.com/ad1ttyya/DBMS_Project/blob/main/demo.png)
 This is an application created by B.Tech 2nd Year students as their Database Management Project. This project is made using Python and MySQL. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
